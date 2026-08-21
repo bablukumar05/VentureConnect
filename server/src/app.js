@@ -48,6 +48,36 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
+app.get('/', (req, res) => {
+  res.status(200).send(`
+    <!DOCTYPE html>
+    <html>
+      <head>
+        <title>VentureConnect API Service</title>
+        <style>
+          body { font-family: system-ui, -apple-system, sans-serif; background: #0f172a; color: #f8fafc; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+          .card { background: #1e293b; padding: 2.5rem 3rem; border-radius: 1.5rem; border: 1px solid #334155; text-align: center; max-width: 500px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); }
+          h1 { color: #10b981; margin-bottom: 0.5rem; font-size: 1.8rem; }
+          p { color: #94a3b8; font-size: 0.95rem; line-height: 1.5; }
+          .badge { display: inline-block; background: rgba(16,185,129,0.15); color: #34d399; border: 1px solid rgba(16,185,129,0.3); padding: 0.35rem 1rem; border-radius: 9999px; font-size: 0.85rem; font-weight: bold; margin-top: 1rem; }
+          a { color: #818cf8; text-decoration: none; font-weight: bold; }
+          a:hover { text-decoration: underline; }
+        </style>
+      </head>
+      <body>
+        <div class="card">
+          <h1>VentureConnect Backend Operational 🚀</h1>
+          <p>Enterprise Multi-Tenant Startup Sourcing & Investment API Service is Live.</p>
+          <div class="badge">Status: ONLINE 🟢</div>
+          <p style="margin-top: 1.5rem; font-size: 0.85rem;">
+            Health Endpoint: <a href="/api/health">/api/health</a>
+          </p>
+        </div>
+      </body>
+    </html>
+  `);
+});
+
 app.get('/api/health', (req, res) => {
   res.status(200).json({
     status: 'online',
