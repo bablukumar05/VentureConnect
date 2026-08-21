@@ -49,16 +49,6 @@ Route → Auth Middleware → Request Validator → Controller → Service → R
 - Node.js (v18 or higher)
 - MongoDB instance (local or MongoDB Atlas)
 
-### 2. Environment Setup
-
-Create `.env` file inside `server`:
-```env
-PORT=5000
-MONGODB_URI=mongodb://localhost:27017/ventureconnect
-JWT_SECRET=ventureconnect_secret_key_2026
-CLOUDINARY_CLOUD_NAME=your_cloud_name
-CLOUDINARY_API_KEY=your_api_key
-CLOUDINARY_API_SECRET=your_api_secret
 ```
 
 ### 3. Installation & Database Seed
@@ -75,15 +65,11 @@ npm run seed
 npm run dev
 ```
 
-In a new terminal window:
-
 ```bash
 # Install Client Dependencies
 cd client
 npm install
 
-# Start Frontend Dev Server
-npm run dev
 ```
 
 App will run locally at: `http://localhost:5173`
