@@ -3,13 +3,13 @@ node_modules/
 client/node_modules/
 server/node_modules/
 
-# Production builds
+# Production build
 client/dist/
 client/build/
 server/uploads/*
 !server/uploads/.gitkeep
 
-# Environment variables
+# Environment variable
 .env
 .env.local
 .env.development.local

@@ -12,10 +12,10 @@ import { LandingPage } from './pages/LandingPage';
 import { LoginPage } from './pages/Auth/LoginPage';
 import { RegisterPage } from './pages/Auth/RegisterPage';
 
-// Community Social Feed Page
+// Community Social Feed 
 import { CommunityFeedPage } from './pages/Community/CommunityFeedPage';
 
-// Founder Pages
+// Founder
 import { FounderDashboard } from './pages/Founder/FounderDashboard';
 import { MyStartupPage } from './pages/Founder/MyStartupPage';
 import { PitchDeckPage } from './pages/Founder/PitchDeckPage';

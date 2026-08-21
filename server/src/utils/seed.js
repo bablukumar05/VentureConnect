@@ -31,6 +31,7 @@ const FundraisingPipeline = require('../models/FundraisingPipeline');
 const seedData = async () => {
   try {
     const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/ventureconnect';
+    console.log(`Connecting to MongoDB Atlas Cluster: ${mongoUri.split('@')[1] || mongoUri}`);
     await mongoose.connect(mongoUri);
 
     await Promise.all([
@@ -98,6 +99,7 @@ const seedData = async () => {
 
     const industries = ['AI/ML', 'HealthTech', 'FinTech', 'SaaS', 'EdTech', 'CleanTech', 'DeepTech', 'PropTech'];
     const stages = ['Idea', 'Pre-Seed', 'Seed', 'Series A'];
+    const businessModels = ['B2B', 'SaaS', 'Marketplace', 'B2C', 'B2B2C'];
 
     const startupPromises = Array.from({ length: 20 }).map((_, i) => {
       const isNexus = i === 0;
@@ -107,6 +109,7 @@ const seedData = async () => {
         tagline: isNexus ? 'Autonomous AI Agents for High-Scale Enterprise Automation' : `Next-gen scalable ${industries[i % industries.length]} platform for modern global markets.`,
         industry: industries[i % industries.length],
         stage: stages[i % stages.length],
+        businessModel: businessModels[i % businessModels.length],
         description: `Enterprise-grade platform solving core operational friction with high unit economics.`,
         fundingRequirement: 5000000 + i * 500000,
         fundingRaised: 2000000 + i * 200000,
@@ -160,7 +163,7 @@ const seedData = async () => {
       ipAddress: '127.0.0.1',
     });
 
-    console.log('Database seeded successfully.');
+    console.log('Database seeded successfully to MongoDB Atlas.');
     process.exit(0);
   } catch (error) {
     console.error('Seed script error:', error);

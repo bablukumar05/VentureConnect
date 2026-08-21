@@ -6,7 +6,7 @@ const socketHandler = (io) => {
   io.on('connection', (socket) => {
     console.log(`[Socket Connected]: ${socket.id}`);
 
-    // Register active user ID
+    // Register active user
     socket.on('register_user', (userId) => {
       if (userId) {
         onlineUsers.set(userId, socket.id);
