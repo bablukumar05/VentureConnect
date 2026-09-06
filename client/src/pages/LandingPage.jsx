@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Sparkles, Rocket, Briefcase, Award, ArrowRight, ShieldCheck, CheckCircle2, TrendingUp, Users } from 'lucide-react';
+import { Sparkles, Rocket, Briefcase, Award, ArrowRight, ShieldCheck, CheckCircle2, TrendingUp, Users, Menu, X, User } from 'lucide-react';
 
 export const LandingPage = () => {
+  const [mobileAuthToggle, setMobileAuthToggle] = useState(false);
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 flex flex-col selection:bg-indigo-500 selection:text-white">
       {/* Header */}
@@ -15,18 +17,52 @@ export const LandingPage = () => {
         </div>
 
         <div className="flex items-center gap-3">
-          <Link
-            to="/login"
-            className="text-sm font-semibold text-slate-300 hover:text-white px-4 py-2 rounded-xl transition"
-          >
-            Sign In
-          </Link>
-          <Link
-            to="/register"
-            className="text-sm font-bold bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl shadow-lg shadow-indigo-600/30 transition flex items-center gap-2"
-          >
-            Get Started <ArrowRight className="w-4 h-4" />
-          </Link>
+          {/* Desktop Auth Actions */}
+          <div className="hidden sm:flex items-center gap-3">
+            <Link
+              to="/login"
+              className="text-sm font-semibold text-slate-300 hover:text-white px-4 py-2 rounded-xl transition"
+            >
+              Sign In
+            </Link>
+            <Link
+              to="/register"
+              className="text-sm font-bold bg-indigo-600 hover:bg-indigo-500 text-white px-5 py-2.5 rounded-xl shadow-lg shadow-indigo-600/30 transition flex items-center gap-2"
+            >
+              Get Started <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+
+          {/* Mobile Auth Toggle Button & Menu */}
+          <div className="sm:hidden relative">
+            <button
+              onClick={() => setMobileAuthToggle(!mobileAuthToggle)}
+              className="p-2 text-slate-200 hover:text-white bg-slate-900 border border-slate-800 rounded-xl transition flex items-center gap-1.5 text-xs font-bold shadow-md"
+              aria-label="Toggle Mobile Account Menu"
+            >
+              {mobileAuthToggle ? <X className="w-4 h-4 text-indigo-400" /> : <Menu className="w-4 h-4 text-indigo-400" />}
+              <span>Account</span>
+            </button>
+
+            {mobileAuthToggle && (
+              <div className="absolute right-0 mt-2 w-48 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-3 z-50 flex flex-col gap-2 animate-in fade-in slide-in-from-top-2">
+                <Link
+                  to="/login"
+                  onClick={() => setMobileAuthToggle(false)}
+                  className="text-xs font-bold text-slate-200 hover:bg-slate-800 px-3 py-2.5 rounded-xl transition text-center border border-slate-800"
+                >
+                  Sign In
+                </Link>
+                <Link
+                  to="/register"
+                  onClick={() => setMobileAuthToggle(false)}
+                  className="text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-2.5 rounded-xl shadow-md transition text-center flex items-center justify-center gap-1.5"
+                >
+                  Get Started <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
       </header>
 

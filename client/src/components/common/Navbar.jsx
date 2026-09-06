@@ -8,6 +8,7 @@ export const Navbar = ({ toggleMobileSidebar }) => {
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
   const [showProfileMenu, setShowProfileMenu] = useState(false);
+  const [mobileAuthToggle, setMobileAuthToggle] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchOpen, setSearchOpen] = useState(false);
 
@@ -143,20 +144,53 @@ export const Navbar = ({ toggleMobileSidebar }) => {
             </div>
           </>
         ) : (
-          <div className="flex items-center gap-2">
-            <Link
-              to="/login"
-              className="text-sm font-medium text-slate-300 hover:text-white px-3 py-1.5 rounded-lg transition"
-            >
-              Sign In
-            </Link>
-            <Link
-              to="/register"
-              className="text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition"
-            >
-              Get Started
-            </Link>
-          </div>
+          <>
+            {/* Desktop Auth Buttons */}
+            <div className="hidden sm:flex items-center gap-2">
+              <Link
+                to="/login"
+                className="text-sm font-medium text-slate-300 hover:text-white px-3 py-1.5 rounded-lg transition"
+              >
+                Sign In
+              </Link>
+              <Link
+                to="/register"
+                className="text-sm font-semibold bg-indigo-600 hover:bg-indigo-500 text-white px-4 py-1.5 rounded-lg shadow-lg shadow-indigo-600/30 transition"
+              >
+                Get Started
+              </Link>
+            </div>
+
+            {/* Mobile Auth Toggle Button & Menu */}
+            <div className="sm:hidden relative">
+              <button
+                onClick={() => setMobileAuthToggle(!mobileAuthToggle)}
+                className="p-2 text-slate-200 hover:text-white bg-slate-900 border border-slate-800 rounded-xl transition flex items-center gap-1.5 text-xs font-bold shadow-md"
+                aria-label="Toggle Account Menu"
+              >
+                <span>Account</span>
+              </button>
+
+              {mobileAuthToggle && (
+                <div className="absolute right-0 mt-2 w-44 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-2 z-50 flex flex-col gap-1.5">
+                  <Link
+                    to="/login"
+                    onClick={() => setMobileAuthToggle(false)}
+                    className="text-xs font-bold text-slate-200 hover:bg-slate-800 px-3 py-2 rounded-xl transition text-center border border-slate-800"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    to="/register"
+                    onClick={() => setMobileAuthToggle(false)}
+                    className="text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-2 rounded-xl transition text-center"
+                  >
+                    Get Started
+                  </Link>
+                </div>
+              )}
+            </div>
+          </>
         )}
       </div>
     </header>
