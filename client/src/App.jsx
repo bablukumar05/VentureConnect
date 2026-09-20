@@ -88,7 +88,7 @@ export function App() {
   }, [user]);
 
   return (
-    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <BrowserRouter>
       <Routes>
         {/* Public Landing */}
         <Route path="/" element={<LandingPage />} />

@@ -183,7 +183,7 @@ export const LegalDashboard = () => {
 
   return (
     <div className="space-y-8 pb-24 relative max-w-6xl mx-auto">
-      {/* 1. LEGAL COMMAND CENTER HERO BANNER ⭐⭐⭐⭐⭐ */}
+      {/* Legal Command Center Hero */}
       <div className="bg-gradient-to-r from-amber-950 via-slate-900 to-indigo-950 p-6 sm:p-8 rounded-3xl border border-amber-500/20 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative overflow-hidden">
         <div>
           <div className="flex items-center gap-2">
@@ -227,7 +227,7 @@ export const LegalDashboard = () => {
         <StatCard title="Pending Documents" value="17 Documents" change="Under Inspection" icon={Clock} color="amber" />
       </div>
 
-      {/* 3. STARTUP LEGAL QUEUE & 4. LEGAL WORKSPACE (TABBED) ⭐⭐⭐⭐⭐ */}
+      {/* Startup Legal Workspace */}
       <div className="bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
           <div>
@@ -327,7 +327,7 @@ export const LegalDashboard = () => {
         )}
       </div>
 
-      {/* 10. LEGAL RISK SCORE & 11. RECOMMENDATIONS ⭐⭐⭐⭐⭐ */}
+      {/* Legal Risk Score & Recommendations */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Risk Score */}
         <div className="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-4">

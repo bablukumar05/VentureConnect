@@ -68,17 +68,17 @@ export const LandingPage = () => {
 
       {/* Hero Section */}
       <section className="px-6 lg:px-12 py-20 max-w-7xl mx-auto text-center relative">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-6">
-          <Sparkles className="w-4 h-4 text-emerald-400" />
-          <span>Automated 6-Criteria Investor Matching Engine</span>
+        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold mb-6">
+          <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+          <span>Automated Investor Matching & Deal Intelligence</span>
         </div>
 
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-white max-w-4xl mx-auto leading-[1.1]">
-          Where Groundbreaking Startups Meet <span className="bg-clip-text text-transparent bg-gradient-to-r from-indigo-400 via-teal-300 to-emerald-400">Smart Capital & Mentors</span>
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-[1.15]">
+          Where Groundbreaking Startups Meet <span className="text-indigo-400">Smart Capital & Mentors</span>
         </h1>
 
-        <p className="mt-6 text-lg sm:text-xl text-slate-400 max-w-2xl mx-auto font-normal">
-          An end-to-end ecosystem for Founders, Angel Investors, VCs, and Industry Mentors. Powered by automated pitch decks, deal tracking, real-time chat, and AI recommendation scores.
+        <p className="mt-6 text-base sm:text-lg text-slate-400 max-w-2xl mx-auto leading-relaxed">
+          An unified operating system for founders, investors, and mentors. Equipped with automated deal pipelines, live metrics, and real-time collaboration.
         </p>
 
         {/* Hero CTAs */}

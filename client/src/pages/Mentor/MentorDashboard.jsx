@@ -155,7 +155,7 @@ export const MentorDashboard = () => {
 
   return (
     <div className="space-y-8 pb-24 relative">
-      {/* 1. MENTOR COMMAND CENTER HERO BANNER ⭐⭐⭐⭐⭐ */}
+      {/* Mentor Command Center Hero */}
       <div className="bg-gradient-to-r from-amber-950 via-slate-900 to-indigo-950 p-6 sm:p-8 rounded-3xl border border-amber-500/20 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative overflow-hidden">
         <div>
           <div className="flex items-center gap-2">
@@ -191,7 +191,7 @@ export const MentorDashboard = () => {
         <StatCard title="Completed Sessions" value={`${completedSessionsCount} Sessions`} change="4.8 Rating" icon={Award} color="indigo" />
       </div>
 
-      {/* 2. TODAY'S SCHEDULE ⭐⭐⭐⭐⭐ */}
+      {/* Advisory Schedule */}
       <div className="bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-4">
         <div className="flex items-center justify-between border-b border-slate-800 pb-3">
           <h3 className="text-lg font-extrabold text-white flex items-center gap-2">
@@ -296,7 +296,7 @@ export const MentorDashboard = () => {
         </div>
       </div>
 
-      {/* 4. STARTUP COACHING WORKSPACE (TABBED) ⭐⭐⭐⭐⭐ */}
+      {/* Startup Coaching Workspace */}
       <div className="bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-slate-800 pb-4">
           <div>
@@ -392,7 +392,7 @@ export const MentorDashboard = () => {
         )}
       </div>
 
-      {/* 19. MENTORSHIP IMPACT ANALYTICS ⭐⭐⭐⭐⭐ */}
+      {/* Mentorship Impact Analytics */}
       <div className="bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-6">
         <div className="flex items-center justify-between border-b border-slate-800 pb-4">
           <div>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Button = ({
+export const Button = React.forwardRef(({
   children,
   variant = 'primary',
   size = 'md',
@@ -10,7 +10,7 @@ export const Button = ({
   onClick,
   type = 'button',
   ...props
-}) => {
+}, ref) => {
   const baseStyle =
     'font-bold rounded-xl transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed select-none';
 
@@ -32,6 +32,7 @@ export const Button = ({
 
   return (
     <button
+      ref={ref}
       type={type}
       disabled={disabled || isLoading}
       onClick={onClick}
@@ -55,4 +56,7 @@ export const Button = ({
       )}
     </button>
   );
-};
+});
+
+Button.displayName = 'Button';
+

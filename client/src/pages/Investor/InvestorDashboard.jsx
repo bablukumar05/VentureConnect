@@ -149,7 +149,7 @@ export const InvestorDashboard = () => {
 
   return (
     <div className="space-y-8 pb-24 relative">
-      {/* 1. INVESTOR COMMAND CENTER HERO BANNER ⭐⭐⭐⭐⭐ */}
+      {/* Investor Command Center Hero */}
       <div className="bg-gradient-to-r from-emerald-950 via-slate-900 to-indigo-950 p-6 sm:p-8 rounded-3xl border border-emerald-500/20 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative overflow-hidden">
         <div>
           <div className="flex items-center gap-2">
@@ -186,7 +186,7 @@ export const InvestorDashboard = () => {
         </div>
       </div>
 
-      {/* 2. INVESTMENT KPI CARDS ⭐⭐⭐⭐⭐ */}
+      {/* Investment KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <StatCard title="Portfolio Value" value={portfolioValue} change="▲ 14.2% returns" icon={DollarSign} color="emerald" />
         <StatCard title="Active Investments" value={`${activeDeals} Startups`} change="+2 this month" icon={Briefcase} color="indigo" />
@@ -194,7 +194,7 @@ export const InvestorDashboard = () => {
         <StatCard title="New Opportunities" value={`${newMatchesCount} Startups`} change="Top 90%+ match" icon={Sparkles} color="amber" />
       </div>
 
-      {/* 3. AI STARTUP MATCH CENTER ⭐⭐⭐⭐⭐ */}
+      {/* AI Startup Match Center */}
       <div className="bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>

@@ -143,7 +143,7 @@ export const IncubatorDashboard = () => {
 
   return (
     <div className="space-y-8 pb-24 relative">
-      {/* 1. PROGRAM COMMAND CENTER HERO ⭐⭐⭐⭐⭐ */}
+      {/* Program Command Center Hero */}
       <div className="bg-gradient-to-r from-emerald-950 via-slate-900 to-indigo-950 p-6 sm:p-8 rounded-3xl border border-emerald-500/20 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative overflow-hidden">
         <div>
           <div className="flex items-center gap-2">
@@ -194,7 +194,7 @@ export const IncubatorDashboard = () => {
         <StatCard title="Funding Raised" value="₹2.4 Crore" change="▲ 24% growth" icon={DollarSign} color="rose" />
       </div>
 
-      {/* 3. APPLICATION MANAGEMENT PIPELINE ⭐⭐⭐⭐⭐ */}
+      {/* Application Screening Funnel */}
       <div className="bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-4">
         <div className="flex items-center justify-between border-b border-slate-800 pb-3">
           <h3 className="text-lg font-extrabold text-white flex items-center gap-2">
@@ -280,7 +280,7 @@ export const IncubatorDashboard = () => {
         </div>
       </div>
 
-      {/* 8. COHORT MILESTONES & 9. DEMO DAY MANAGEMENT ⭐⭐⭐⭐⭐ */}
+      {/* Cohort Milestones & Demo Day Schedule */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Cohort Milestones */}
         <div className="bg-slate-900 p-6 rounded-2xl border border-slate-800 space-y-3">

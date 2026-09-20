@@ -60,7 +60,7 @@ export const TeamDashboard = () => {
 
   return (
     <div className="space-y-8 pb-24 relative max-w-6xl mx-auto">
-      {/* 1. HERO BANNER ⭐⭐⭐⭐⭐ */}
+      {/* Team Workspace Hero */}
       <div className="bg-gradient-to-r from-indigo-950 via-slate-900 to-purple-950 p-6 sm:p-8 rounded-3xl border border-indigo-500/20 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative overflow-hidden">
         <div>
           <div className="flex items-center gap-2">

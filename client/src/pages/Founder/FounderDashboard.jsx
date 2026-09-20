@@ -182,7 +182,7 @@ export const FounderDashboard = () => {
 
   return (
     <div className="space-y-8 pb-24 relative">
-      {/* 1. HERO COMMAND CENTER ⭐⭐⭐⭐⭐ */}
+      {/* Founder Command Center Hero */}
       <div className="bg-gradient-to-r from-indigo-950 via-slate-900 to-purple-950 p-6 sm:p-8 rounded-3xl border border-indigo-500/20 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 relative overflow-hidden">
         <div className="flex items-center gap-5">
           <div className="w-16 h-16 rounded-2xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-emerald-400 font-black text-white text-3xl flex items-center justify-center shadow-xl shadow-indigo-500/30">
@@ -265,7 +265,7 @@ export const FounderDashboard = () => {
         </div>
       </div>
 
-      {/* 4. STARTUP HEALTH ENGINE ⭐⭐⭐⭐⭐ */}
+      {/* Startup Health Engine */}
       <div className="bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-6">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
@@ -297,7 +297,7 @@ export const FounderDashboard = () => {
         </div>
       </div>
 
-      {/* 5. FUNDING COMMAND CENTER ⭐⭐⭐⭐⭐ */}
+      {/* Funding Command Center */}
       <div className="bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-800 space-y-4">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>

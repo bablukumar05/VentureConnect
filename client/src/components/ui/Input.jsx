@@ -1,12 +1,12 @@
 import React from 'react';
 
-export const Input = ({
+export const Input = React.forwardRef(({
   label,
   error,
   icon: Icon,
   className = '',
   ...props
-}) => {
+}, ref) => {
   return (
     <div className="space-y-1.5 w-full">
       {label && (
@@ -21,6 +21,7 @@ export const Input = ({
           </div>
         )}
         <input
+          ref={ref}
           className={`w-full bg-slate-950 border ${
             error ? 'border-rose-500' : 'border-slate-800 focus:border-indigo-500'
           } rounded-xl ${Icon ? 'pl-9' : 'px-3'} py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none transition ${className}`}
@@ -30,4 +31,7 @@ export const Input = ({
       {error && <p className="text-[10px] text-rose-400 font-semibold">{error}</p>}
     </div>
   );
-};
+});
+
+Input.displayName = 'Input';
+

@@ -3,23 +3,31 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
   body {
-    @apply bg-slate-950 text-slate-100 min-h-screen flex flex-col;
+    @apply bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased;
+    overflow-x: hidden;
+  }
+  ::selection {
+    @apply bg-indigo-600/30 text-white;
   }
 }
 
-/* Custom scrollbar */
+/* Subtle modern scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0f172a;
+  background: #090d16;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
+  background: #1e293b;
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #334155;
 }

@@ -47,11 +47,11 @@ export const Navbar = ({ toggleMobileSidebar }) => {
           <Menu className="w-5 h-5" />
         </button>
 
-        <Link to="/" className="flex items-center gap-2">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-emerald-400 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20">
+        <Link to="/" className="flex items-center gap-2.5">
+          <div className="w-8 h-8 rounded-xl bg-indigo-600 flex items-center justify-center font-bold text-white shadow-md shadow-indigo-600/20 text-xs">
             VC
           </div>
-          <span className="text-lg font-bold bg-clip-text text-transparent bg-gradient-to-r from-white via-slate-100 to-indigo-300 tracking-tight">
+          <span className="text-base font-bold text-white tracking-tight">
             VentureConnect
           </span>
         </Link>
