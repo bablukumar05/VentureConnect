@@ -26,6 +26,7 @@ import { FounderMessagesPage } from './pages/Founder/FounderMessagesPage';
 import { FounderAnalyticsPage } from './pages/Founder/FounderAnalyticsPage';
 import { AIAnalyzerPage } from './pages/Founder/AIAnalyzerPage';
 import { CapTablePage } from './pages/Founder/CapTablePage';
+import { VirtualDataRoomPage } from './pages/Founder/VirtualDataRoomPage';
 import { FundraisingCRMPage } from './pages/Founder/FundraisingCRMPage';
 import { StartupHealthAnalysisPage } from './pages/Founder/StartupHealthAnalysisPage';
 
@@ -128,6 +129,7 @@ export function App() {
           <Route path="/founder/analytics" element={<FounderAnalyticsPage />} />
           <Route path="/founder/ai-analyzer" element={<AIAnalyzerPage />} />
           <Route path="/founder/cap-table" element={<CapTablePage />} />
+          <Route path="/founder/vdr" element={<VirtualDataRoomPage />} />
           <Route path="/founder/crm" element={<FundraisingCRMPage />} />
           <Route path="/founder/health-analysis" element={<StartupHealthAnalysisPage />} />
         </Route>

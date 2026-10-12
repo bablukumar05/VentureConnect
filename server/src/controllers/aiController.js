@@ -1,9 +1,41 @@
+const path = require('path');
+const fs = require('fs');
 const Startup = require('../models/Startup');
 const AIAnalysis = require('../models/AIAnalysis');
 const PitchDeck = require('../models/PitchDeck');
+const geminiAiService = require('../services/geminiAiService');
 
 /**
- * Get or trigger AI analysis for a startup
+ * Helper to find local PDF path for a startup's pitch deck.
+ */
+const findDeckLocalPath = async (startupId) => {
+  const pitchDeck = await PitchDeck.findOne({ startup: startupId });
+  if (!pitchDeck) return null;
+
+  // Check if fileUrl points to a local uploads directory
+  if (pitchDeck.fileUrl) {
+    const filename = path.basename(pitchDeck.fileUrl);
+    const localPath = path.join(__dirname, '../../uploads', filename);
+    if (fs.existsSync(localPath)) {
+      return { path: localPath, pitchDeck };
+    }
+  }
+
+  // Also check uploads directory for any matching file
+  const uploadsDir = path.join(__dirname, '../../uploads');
+  if (fs.existsSync(uploadsDir)) {
+    const files = fs.readdirSync(uploadsDir);
+    const pdfFile = files.find((f) => f.endsWith('.pdf'));
+    if (pdfFile) {
+      return { path: path.join(uploadsDir, pdfFile), pitchDeck };
+    }
+  }
+
+  return { path: null, pitchDeck };
+};
+
+/**
+ * Get AI analysis for a startup
  */
 const getStartupAIAnalysis = async (req, res) => {
   try {
@@ -23,74 +55,14 @@ const getStartupAIAnalysis = async (req, res) => {
     let analysis = await AIAnalysis.findOne({ startup: startup._id });
 
     if (!analysis) {
-      // Generate initial AI Analysis report
+      // Find pitch deck if any
+      const deckInfo = await findDeckLocalPath(startup._id);
+      const aiResult = await geminiAiService.analyzePitchDeck(deckInfo?.path || '', startup);
+
       analysis = await AIAnalysis.create({
         startup: startup._id,
-        businessIdeaScore: startup.potentialScore || 87,
-        marketAnalysis: {
-          tam: startup.marketSize || '₹10,000 Cr',
-          sam: '₹2,500 Cr',
-          som: '₹350 Cr',
-          growthRateYoY: `${startup.metrics?.growthRate || 22}%`,
-          marketDrivers: [
-            'Accelerated digital transformation across India & SEA',
-            'Strong tailwinds in B2B SaaS adoption',
-            'High gross margin business model with scalable unit economics',
-          ],
-        },
-        swotAnalysis: {
-          strengths: [
-            'Experienced founding team with domain depth',
-            'Proprietary technology stack and strong IP',
-            'High retention rate (88% MoM)',
-          ],
-          weaknesses: [
-            'Customer acquisition cost (CAC) needs further optimization',
-            'Early-stage brand awareness in secondary markets',
-          ],
-          opportunities: [
-            'Expansion into enterprise B2B tier-1 markets',
-            'Strategic partnerships with incubators and accelerators',
-            'Cross-selling AI modules to existing user base',
-          ],
-          threats: [
-            'Incumbent market players lowering entry pricing',
-            'Regulatory shifts around data security and compliance',
-          ],
-        },
-        riskPrediction: {
-          riskLevel: startup.riskProfile || 'Medium',
-          riskScore: 22,
-          keyRisks: [
-            'Burn rate escalation during aggressive sales hiring',
-            'Market saturation by early seed-stage competitors',
-          ],
-          mitigationStrategies: [
-            'Maintain at least 18 months of runway buffer',
-            'Focus on product-led growth (PLG) to drive down CAC',
-          ],
-        },
-        pitchDeckReview: {
-          readinessScore: 91,
-          strengths: [
-            'Clear problem statement and compelling value proposition',
-            'Strong financial projection breakdown',
-            'Polished slide layout and visual hierarchy',
-          ],
-          weaknesses: [
-            'Go-to-market slide lacks specific channel breakdown',
-            'Competitor matrix needs deeper distinction on moat',
-          ],
-          suggestions: [
-            'Add customer testimonials or pilot case study metrics',
-            'Explicitly quantify TAM/SAM calculations on Slide 4',
-          ],
-        },
-        investorRecommendation: {
-          bestMatch: 'Sequoia India / Peak XV Partners',
-          confidenceScore: 94,
-          reasoning: '94% alignment with SaaS & FinTech early stage investment portfolio.',
-        },
+        pitchDeck: deckInfo?.pitchDeck?._id,
+        ...aiResult,
       });
     }
 
@@ -101,7 +73,7 @@ const getStartupAIAnalysis = async (req, res) => {
 };
 
 /**
- * Re-run AI Startup Analysis
+ * Re-run AI Startup Analysis (using real PDF text & Gemini)
  */
 const runStartupAnalysis = async (req, res) => {
   try {
@@ -110,59 +82,57 @@ const runStartupAnalysis = async (req, res) => {
       return res.status(404).json({ success: false, message: 'Startup profile not found' });
     }
 
-    // Dynamic calculated score
-    const baseScore = Math.min(98, Math.max(70, Math.floor(Math.random() * 15) + 84));
+    const deckInfo = await findDeckLocalPath(startup._id);
+    const aiResult = await geminiAiService.analyzePitchDeck(deckInfo?.path || '', startup);
 
     const updatedAnalysis = await AIAnalysis.findOneAndUpdate(
       { startup: startup._id },
       {
         startup: startup._id,
-        businessIdeaScore: baseScore,
-        marketAnalysis: {
-          tam: startup.marketSize || '₹10,000 Cr',
-          sam: '₹2,800 Cr',
-          som: '₹420 Cr',
-          growthRateYoY: `${startup.metrics?.growthRate || 24}%`,
-          marketDrivers: [
-            'Rapid cloud adoption across SMBs',
-            'Expanding venture capital allocations in B2B tech',
-            'Strong product-market fit metrics',
-          ],
-        },
-        swotAnalysis: {
-          strengths: [
-            'Clear unit economics with 4.2x LTV:CAC ratio',
-            'High founder commitment & domain mastery',
-          ],
-          weaknesses: ['Small dedicated sales team'],
-          opportunities: ['International expansion into APAC & MENA'],
-          threats: ['Macroeconomic fundraising slowdowns'],
-        },
-        riskPrediction: {
-          riskLevel: 'Low',
-          riskScore: 18,
-          keyRisks: ['Execution speed under capital constraint'],
-          mitigationStrategies: ['Lean operational budget & milestone-based hiring'],
-        },
-        pitchDeckReview: {
-          readinessScore: 94,
-          strengths: ['Financial clarity & unit economics'],
-          weaknesses: ['Visual slide transitions could be refined'],
-          suggestions: ['Highlight monthly active user growth chart'],
-        },
-        investorRecommendation: {
-          bestMatch: 'Blume Ventures / Nexus Venture Partners',
-          confidenceScore: 94,
-          reasoning: 'Strong match based on ticket size (₹2Cr - ₹5Cr) and sector focus.',
-        },
+        pitchDeck: deckInfo?.pitchDeck?._id,
+        ...aiResult,
       },
       { upsert: true, new: true }
     );
 
     res.status(200).json({
       success: true,
-      message: 'AI Analysis re-generated successfully',
+      message: 'AI Analysis re-generated successfully from pitch deck',
       analysis: updatedAnalysis,
+    });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+/**
+ * Interactive Q&A: Ask questions about the startup's pitch deck
+ */
+const askPitchDeckQuestion = async (req, res) => {
+  try {
+    const { question, startupId } = req.body;
+    if (!question) {
+      return res.status(400).json({ success: false, message: 'Question string is required' });
+    }
+
+    let startup;
+    if (startupId) {
+      startup = await Startup.findById(startupId);
+    } else {
+      startup = await Startup.findOne({ founder: req.user._id });
+    }
+
+    if (!startup) {
+      return res.status(404).json({ success: false, message: 'Startup profile not found' });
+    }
+
+    const deckInfo = await findDeckLocalPath(startup._id);
+    const answer = await geminiAiService.askDeckQuestion(deckInfo?.path || '', question, startup);
+
+    res.status(200).json({
+      success: true,
+      question,
+      answer,
     });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
@@ -172,4 +142,5 @@ const runStartupAnalysis = async (req, res) => {
 module.exports = {
   getStartupAIAnalysis,
   runStartupAnalysis,
+  askPitchDeckQuestion,
 };

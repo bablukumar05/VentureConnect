@@ -28,6 +28,9 @@ const incubatorRoutes = require('./routes/incubatorRoutes');
 const legalRoutes = require('./routes/legalRoutes');
 const communityRoutes = require('./routes/communityRoutes');
 const startupHealthRoutes = require('./routes/startupHealthRoutes');
+const dealRoomRoutes = require('./routes/dealRoomRoutes');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./docs/swagger');
 
 const app = express();
 const server = http.createServer(app);
@@ -70,7 +73,8 @@ app.get('/', (req, res) => {
           <p>Enterprise Multi-Tenant Startup Sourcing & Investment API Service is Live.</p>
           <div class="badge">Status: ONLINE 🟢</div>
           <p style="margin-top: 1.5rem; font-size: 0.85rem;">
-            Health Endpoint: <a href="/api/health">/api/health</a>
+            Health Endpoint: <a href="/api/health">/api/health</a> | 
+            OpenAPI Docs: <a href="/api/docs" target="_blank">/api/docs</a>
           </p>
         </div>
       </body>
@@ -86,6 +90,9 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Swagger Interactive API Documentation
+app.use('/api/docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/startups', startupRoutes);
@@ -93,6 +100,7 @@ app.use('/api/investors', investorRoutes);
 app.use('/api/matching', matchingRoutes);
 app.use('/api/pitch-decks', pitchDeckRoutes);
 app.use('/api/funding', fundingRoutes);
+app.use('/api/deals', dealRoomRoutes);
 app.use('/api/mentorship', mentorshipRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/notifications', notificationRoutes);

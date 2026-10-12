@@ -3,7 +3,11 @@ const mongoose = require('mongoose');
 const aiAnalysisSchema = new mongoose.Schema(
   {
     startup: { type: mongoose.Schema.Types.ObjectId, ref: 'Startup', required: true },
-    businessIdeaScore: { type: Number, default: 87 }, // 0 to 100
+    pitchDeck: { type: mongoose.Schema.Types.ObjectId, ref: 'PitchDeck' },
+    executiveSummary: { type: String, default: '' },
+    deckParsedWith: { type: String, default: 'Gemini 1.5 Flash AI' },
+    pagesCount: { type: Number, default: 1 },
+    businessIdeaScore: { type: Number, default: 87 },
     marketAnalysis: {
       tam: { type: String, default: '₹10,000 Cr' },
       sam: { type: String, default: '₹2,500 Cr' },
@@ -19,7 +23,7 @@ const aiAnalysisSchema = new mongoose.Schema(
     },
     riskPrediction: {
       riskLevel: { type: String, enum: ['Low', 'Medium', 'High'], default: 'Medium' },
-      riskScore: { type: Number, default: 22 }, // Lower is safer
+      riskScore: { type: Number, default: 22 },
       keyRisks: [{ type: String }],
       mitigationStrategies: [{ type: String }],
     },
@@ -31,7 +35,7 @@ const aiAnalysisSchema = new mongoose.Schema(
     },
     investorRecommendation: {
       bestMatch: { type: String, default: 'Sequoia Capital India' },
-      confidenceScore: { type: Number, default: 94 }, // 94%
+      confidenceScore: { type: Number, default: 94 },
       reasoning: { type: String, default: 'High alignment with SaaS portfolio and ticket size preference.' },
     },
   },

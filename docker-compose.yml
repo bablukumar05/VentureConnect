@@ -1,0 +1,61 @@
+version: '3.8'
+
+services:
+  # MongoDB Database Service
+  mongo:
+    image: mongo:7.0-jammy
+    container_name: ventureconnect-db
+    restart: always
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: ventureconnect
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - ventureconnect-network
+
+  # Backend REST API Service
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: ventureconnect-server
+    restart: always
+    ports:
+      - "5000:5000"
+    environment:
+      - PORT=5000
+      - MONGO_URI=mongodb://mongo:27017/ventureconnect
+      - JWT_SECRET=ventureconnect_jwt_production_secret_key_2026
+      - NODE_ENV=production
+    depends_on:
+      - mongo
+    volumes:
+      - server_uploads:/app/uploads
+    networks:
+      - ventureconnect-network
+
+  # Frontend Web App (Nginx)
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: ventureconnect-client
+    restart: always
+    ports:
+      - "3000:80"
+    depends_on:
+      - server
+    networks:
+      - ventureconnect-network
+
+volumes:
+  mongo_data:
+    driver: local
+  server_uploads:
+    driver: local
+
+networks:
+  ventureconnect-network:
+    driver: bridge

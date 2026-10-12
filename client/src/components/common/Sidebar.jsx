@@ -40,6 +40,7 @@ export const Sidebar = ({ isMobile = false }) => {
     { name: 'AI Matches', path: '/founder/matches', icon: Sparkles, badge: 'Hero' },
     { name: 'Fundraising CRM', path: '/founder/crm', icon: Kanban, badge: 'CRM' },
     { name: 'Cap Table Vault', path: '/founder/cap-table', icon: PieChart },
+    { name: 'Virtual Data Room', path: '/founder/vdr', icon: Shield, badge: 'VDR' },
     { name: 'Funding Tracker', path: '/founder/funding', icon: DollarSign },
     { name: 'Find Mentors', path: '/founder/mentors', icon: Users },
     { name: 'Messages', path: '/founder/messages', icon: MessageSquare },

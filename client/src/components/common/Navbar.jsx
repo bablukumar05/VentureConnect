@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuthStore } from '../../store/authStore';
 import { NotificationBell } from '../notifications/NotificationBell';
-import { Search, LogOut, User as UserIcon, Menu, Rocket, Shield, Briefcase, Award } from 'lucide-react';
+import { Search, LogOut, User as UserIcon, Menu, Rocket, Shield, Briefcase, Award, Code } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 export const Navbar = ({ toggleMobileSidebar }) => {
@@ -95,6 +95,17 @@ export const Navbar = ({ toggleMobileSidebar }) => {
 
       {/* User Actions */}
       <div className="flex items-center gap-3">
+        <a
+          href="http://localhost:5000/api/docs"
+          target="_blank"
+          rel="noreferrer"
+          className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-slate-800/80 hover:bg-slate-700 border border-slate-700/60 text-xs font-semibold text-indigo-300 hover:text-white transition shadow-sm"
+          title="Open Interactive Swagger OpenAPI Documentation"
+        >
+          <Code className="w-3.5 h-3.5 text-indigo-400" />
+          <span>API Docs</span>
+        </a>
+
         {user ? (
           <>
             <NotificationBell />

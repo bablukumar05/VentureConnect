@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import API from '../../services/api';
 import { PitchDeckViewerModal } from '../../components/pitchdeck/PitchDeckViewerModal';
 import { LoadingSpinner } from '../../components/common/LoadingSpinner';
-import { FileText, UploadCloud, Eye, Download, CheckCircle2, AlertCircle } from 'lucide-react';
+import { FileText, UploadCloud, Eye, Download, CheckCircle2, AlertCircle, Sparkles } from 'lucide-react';
 import { formatDate } from '../../utils/formatters';
 
 export const PitchDeckPage = () => {
@@ -128,7 +129,13 @@ export const PitchDeckPage = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-2.5">
+            <Link
+              to="/founder/ai-analyzer"
+              className="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs rounded-xl transition shadow-lg shadow-purple-600/30 flex items-center gap-1.5"
+            >
+              <Sparkles className="w-4 h-4" /> AI Deck Analysis
+            </Link>
             <button
               onClick={() => setIsViewerOpen(true)}
               className="px-4 py-2 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs rounded-xl transition shadow-lg shadow-indigo-600/30 flex items-center gap-1.5"
@@ -143,6 +150,27 @@ export const PitchDeckPage = () => {
               <Download className="w-4 h-4" /> Download
             </a>
           </div>
+        </div>
+      )}
+
+      {/* AI Intelligence Teaser Banner */}
+      {pitchDeck && (
+        <div className="p-5 rounded-3xl bg-slate-900 border border-purple-500/30 bg-gradient-to-r from-purple-950/20 to-slate-900 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-2xl bg-purple-600/20 border border-purple-500/30 flex items-center justify-center text-purple-400">
+              <Sparkles className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-white">Gemini AI Pitch Deck Audit Ready</h4>
+              <p className="text-xs text-slate-400">Deep-learning evaluation of your slides, market sizing, and SWOT matrix.</p>
+            </div>
+          </div>
+          <Link
+            to="/founder/ai-analyzer"
+            className="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold rounded-xl transition flex items-center gap-1.5 shrink-0"
+          >
+            Open AI Analyzer →
+          </Link>
         </div>
       )}
 
